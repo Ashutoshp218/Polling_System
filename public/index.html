@@ -1,0 +1,49 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polling System</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #pollResults { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Real-Time Polling System</h1>
+
+  <h2>Create a Poll</h2>
+  <form id="pollForm">
+    <label for="question">Poll Question:</label><br>
+    <input type="text" id="question" required><br><br>
+
+    <label for="option1">Option 1:</label><br>
+    <input type="text" id="option1" required><br><br>
+
+    <label for="option2">Option 2:</label><br>
+    <input type="text" id="option2" required><br><br>
+
+    <button type="submit">Create Poll</button>
+  </form>
+
+  <h2>Vote on a Poll</h2>
+  <form id="voteForm">
+    <label for="pollId">Poll ID:</label><br>
+    <input type="number" id="pollId" required><br><br>
+
+    <label for="optionVote">Vote for Option:</label><br>
+    <input type="number" id="optionVote" required><br><br>
+
+    <button type="submit">Vote</button>
+  </form>
+
+  <div id="pollResults">
+    <h2>Poll Results</h2>
+    <p id="pollQuestion">Waiting for poll data...</p>
+    <ul id="pollOptions"></ul>
+  </div>
+
+  <script src="/main.js"></script>
+</body>
+</html>
