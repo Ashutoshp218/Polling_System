@@ -9,14 +9,14 @@ exports.createNewPoll = async (req, res) => {
       'INSERT INTO polls (question, options) VALUES ($1, $2) RETURNING id',
       [question, JSON.stringify(options)]
     );
-    res.json({ id: result.rows[0].id });
+   return res.json({ id: result.rows[0].id });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to create poll' });
+    return res.status(500).json({ error: 'Failed to create poll' });
   }
 };
 
 // Vote on a poll
-exports.voteOnPoll =async (req, res) => {
+exports.voteOnPoll = async (req, res) => {
   const pollId = req.params.id;
   const { option } = req.body;
 
@@ -27,9 +27,23 @@ exports.voteOnPoll =async (req, res) => {
       messages: [{ value: JSON.stringify({ pollId, option }) }],
     });
 
-    res.json({ message: 'Vote registered' });
+   return res.json({ message: 'Vote registered' });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to send vote' });
+    return res.status(500).json({ error: 'Failed to send vote' });
   }
 };
 
+exports.leaderboard = async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT jsonb_object_keys(options) AS option, sum((options->>'votes')::int) AS total_votes
+      FROM polls
+      GROUP BY option
+      ORDER BY total_votes DESC
+      LIMIT 10;
+    `);
+    return res.json(result.rows);
+  } catch (err) {
+    return res.status(500).json({ error: 'Error retrieving leaderboard' });
+  }
+}
