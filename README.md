@@ -7,7 +7,6 @@ This project is a real-time polling system built using Node.js, Kafka, PostgreSQ
 - **Message Broker**: Kafka (with Zookeeper)
 - **Database**: PostgreSQL
 - **Real-Time Updates**: WebSockets
-- **Containerization**: Docker
 
 ### Features:
 1. Poll Creation: Users can create polls with multiple options.
@@ -19,7 +18,6 @@ This project is a real-time polling system built using Node.js, Kafka, PostgreSQ
 ## Getting Started
 
 ### Requirements:
-- Docker
 - Node.js
 - PostgreSQL
 
@@ -27,5 +25,5 @@ This project is a real-time polling system built using Node.js, Kafka, PostgreSQ
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-repo/polling-system.git
+   git clone https://github.com/Ashutoshp218/polling-system.git
    cd polling-system
